@@ -7,3 +7,4 @@ Lib
 pyvenv.cfg
 pyvenv.cfg
 ./pyvenv.cfg
+SecureApp/.env
