@@ -12,7 +12,7 @@ def Register(request):
         form=CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('two_factor:login')
 
     context={
         'form':form
