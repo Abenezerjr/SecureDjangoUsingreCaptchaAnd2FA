@@ -1,4 +1,16 @@
-<table class="mb-3">
+{% load my_tag %}
+
   {{ wizard.management_form }}
-  {{ wizard.form.as_table }}
-</table>
+
+  <br>
+
+  {% for attr in wizard.form %}
+
+    <label class="form-label"> {{ attr.label }} </label>
+
+    {{attr | insert_classes:'form-control mb-1 account-form'}}
+
+  {% endfor %}
+
+
+
