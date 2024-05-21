@@ -6,6 +6,7 @@ environ.Env.read_env()
 from pathlib import Path
 
 import os
+#from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_auto_logout.middleware.auto_logout', # outo logout
 ]
 
 ROOT_URLCONF = 'SecureApp.urls'
@@ -75,6 +77,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #auto logout
+                'django_auto_logout.context_processors.auto_logout_client',
             ],
         },
     },
@@ -143,3 +147,12 @@ MEDIA_ROOT=BASE_DIR / 'static/images'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#aout log out
+AUTO_LOGOUT = {
+    # 'IDLE_TIME': timedelta(minutes=5),
+    # 'SESSION_TIME': timedelta(minutes=30),
+    'IDLE_TIME': 60,
+    #'MESSAGE': 'The session has expired. Please login again to continue.',
+    'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
+}
