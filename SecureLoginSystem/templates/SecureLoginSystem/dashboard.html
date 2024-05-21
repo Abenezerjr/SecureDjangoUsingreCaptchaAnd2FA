@@ -13,7 +13,9 @@
 
 <h2>Wellcome, {{ user }}</h2>
     <div>
-    <a class="" type="button" href="#"> Enable/disable 2FA</a>
+    <a class="" type="button" href="{% url 'two_factor:setup' %}"> Enable 2FA</a>
+        <br>
+    <a class="" type="button" href="{% url 'two_factor:profile' %}"> 2FA account setting</a>
     </div>
 
 {% endblock %}
