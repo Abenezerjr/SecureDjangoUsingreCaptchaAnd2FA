@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_static',
     'django_otp.plugins.otp_totp',
     'two_factor',
+    'axes',
 ]
 
 RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
@@ -49,6 +50,15 @@ LOGIN_URL = 'two_factor:login'
 
 # this one is optional
 LOGIN_REDIRECT_URL = 'dashboard'
+
+AUTHENTICATION_BACKENDS = [
+    # AxesStandaloneBackend should be the first backend in the AUTHENTICATION_BACKENDS list.
+    'axes.backends.AxesStandaloneBackend',
+
+    # Django ModelBackend is the default authentication backend.
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -61,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_auto_logout.middleware.auto_logout', # outo logout
+    'axes.middleware.AxesMiddleware', # axos
 ]
 
 ROOT_URLCONF = 'SecureApp.urls'
@@ -156,3 +167,12 @@ AUTO_LOGOUT = {
     #'MESSAGE': 'The session has expired. Please login again to continue.',
     'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
 }
+
+# axes configuration settings
+AXES_FAILURE_LIMIT: 3 # if user try 3 time the account is locked
+AXES_COOLOFF_TIME: 1 # for 1 hour
+
+AXES_RESET_ON_SUCCESS = True # if he try two times and acces in the 3rd the account refreash it back the try and error in 3
+
+
+AXES_LOCKOUT_TEMPLATE='account_locked.html'

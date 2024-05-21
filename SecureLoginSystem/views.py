@@ -31,3 +31,6 @@ def login_user(request):
 def logout_user(request):
     auth.logout(request)
     return redirect('home')
+
+def accountLocked(request):
+    return render(request,'SecureLoginSystem/account _locked.html')
