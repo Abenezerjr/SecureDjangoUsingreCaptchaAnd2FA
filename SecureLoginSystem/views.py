@@ -34,3 +34,9 @@ def logout_user(request):
 
 def accountLocked(request):
     return render(request,'SecureLoginSystem/account _locked.html')
+
+
+
+
+
+#TODO Passwored management :- user can reset and update the password functionality
