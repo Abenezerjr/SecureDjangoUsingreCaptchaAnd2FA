@@ -176,3 +176,15 @@ AXES_RESET_ON_SUCCESS = True # if he try two times and acces in the 3rd the acco
 
 
 AXES_LOCKOUT_TEMPLATE='account_locked.html'
+
+
+#password management
+
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = 'True'
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
+DEFAULT_FROM_EMAIL=env('DEFAULT_FROM_EMAIL')
